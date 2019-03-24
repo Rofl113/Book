@@ -15,5 +15,10 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/release/${BUILD_CONFIG})
 
+# JSON
+# TODO: move to sub/CMakeLists.txt
+set(JSON_INCLUDE ${PROJECT_SOURCE_DIR}/sub/json/single_include)
+
 add_subdirectory(backend)
 add_subdirectory(frontend)
+add_subdirectory(sub)
