@@ -1,22 +1,25 @@
 #pragma once
 #include <vector>
 #include <memory>
-#include "IBookDataChapter.h"
 #include "BookDataItem.h"
 
 
 
-class BookDataChapter : public BookDataItem, public IBookDataChapter
+class BookDataChapter : public BookDataItem
 {
+	using ClassBase = BookDataItem;
 	BookDataChapter() = delete;
 public:
-	explicit BookDataChapter(const std::string& name, std::vector<std::shared_ptr<IBookDataItem>>&& childs);
+	explicit BookDataChapter(const std::string& name, std::vector<std::shared_ptr<BookDataItem>>&& childs);
 
-	virtual const std::vector<std::shared_ptr<IBookDataItem>>& getChilds() const override;
+	virtual const std::vector<std::shared_ptr<BookDataItem>>& getChilds() const;
 
-private:
-	virtual const Type& getType() const override;
+	virtual bool equal(const BookDataItem& other) const override;
+
+protected:
+	virtual const BookDataType& getType() const override;
 	virtual const std::string& getName() const override;
 
-	std::vector<std::shared_ptr<IBookDataItem>> m_childs;
+private:
+	std::vector<std::shared_ptr<BookDataItem>> m_childs;
 };

@@ -1,9 +1,10 @@
 #pragma once
+#include <memory>
 #include <nlohmann/json.hpp>
 
 
 
-class IBookData;
+class BookData;
 
 
 class IBookDataReader
@@ -11,5 +12,5 @@ class IBookDataReader
 public:
 	virtual ~IBookDataReader() = default;
 
-	virtual IBookData* read(const nlohmann::json& jsBook) const = 0;
+	virtual std::shared_ptr<BookData> read(const nlohmann::json& jsBook) const = 0;
 };

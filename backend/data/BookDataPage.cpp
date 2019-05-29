@@ -1,20 +1,26 @@
 #include "BookDataPage.h"
+#include "BookDataType.h"
 
 
 
 
-BookDataPage::BookDataPage(const std::string& name)
-	: BookDataItem(name, Type::PAGE)
+BookDataPage::BookDataPage(const std::string& name
+						   , const std::map<std::string, std::shared_ptr<ManagerActionsData>>& managers
+						   , const std::string& managerActionsName)
+
+	: BookDataItem(name, BookDataType::PAGE)
+	, m_managers(managers)
+	, m_managerActionsName(managerActionsName)
 {
 
 }
 
-const IBookDataItem::Type& BookDataPage::getType() const
+const std::map<std::string, std::shared_ptr<ManagerActionsData>>& BookDataPage::getManagers() const
 {
-	return BookDataItem::getType();
+	return m_managers;
 }
 
-const std::string& BookDataPage::getName() const
+const std::string& BookDataPage::getManagerActionsName() const
 {
-	return BookDataItem::getName();
+	return m_managerActionsName;
 }

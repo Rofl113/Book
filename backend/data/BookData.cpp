@@ -1,33 +1,67 @@
 #include "BookData.h"
 #include "PaginationDataBook.h"
-#include "IBookmarksData.h"
 
 
 
 
-BookData::BookData(const std::string& name, std::vector<std::shared_ptr<IBookDataItem> >&& childs)
+BookData::BookData(const std::string& name, std::vector<std::shared_ptr<BookDataItem> >&& childs)
 	: BookDataChapter(name, std::move(childs))
 {
 
 }
 
-void BookData::setPagination(PaginationDataBook* pagination)
+void BookData::setPaginationBook(const std::shared_ptr<PaginationDataBook>& pagination)
 {
-	const std::shared_ptr<IPaginationData> data (pagination);
-	BookDataChapter::setPagination(data);
+	BookDataChapter::setPagination(pagination);
 }
 
-const PaginationDataBook* BookData::getPagination() const
+const PaginationDataBook* BookData::getPaginationBook() const
 {
 	return dynamic_cast<const PaginationDataBook*>(BookDataChapter::getPagination());
 }
 
-void BookData::setBookmarks(const std::shared_ptr<IBookmarksData>& bookmarks)
+void BookData::setBookmarks(std::shared_ptr<BookmarksData> bookmarks)
 {
 	m_bookmarks = bookmarks;
 }
 
-const IBookmarksData* BookData::getBookmarks() const
+const BookmarksData* BookData::getBookmarks() const
 {
 	return m_bookmarks.get();
+}
+
+bool BookData::equal(const BookDataItem& other) const
+{
+	if (const auto otherBook = dynamic_cast<const BookData*>(&other))
+	{
+		if (not ClassBase::equal(*otherBook))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+	return true;
+}
+
+void BookData::setPagination(const std::shared_ptr<PaginationData>& pagination)
+{
+	ClassBase::setPagination(pagination);
+}
+
+const std::vector<std::shared_ptr<BookDataItem> >& BookData::getChilds() const
+{
+	return ClassBase::getChilds();
+}
+
+const BookDataType& BookData::getType() const
+{
+	return ClassBase::getType();
+}
+
+const std::string& BookData::getName() const
+{
+	return ClassBase::getName();
 }

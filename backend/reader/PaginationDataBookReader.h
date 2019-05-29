@@ -10,5 +10,5 @@ public:
 	PaginationDataBookReader();
 	virtual ~PaginationDataBookReader() override;
 
-	virtual PaginationDataBook* read(const nlohmann::json& jsPagination) const override;
+	virtual std::shared_ptr<PaginationDataBook> read(const nlohmann::json& jsPagination) const override;
 };

@@ -1,6 +1,6 @@
 #include "BookChapterDataReaderBase.h"
 #include "IBookItemDataReader.h"
-#include "data/IBookDataItem.h"
+#include "data/BookDataItem.h"
 
 
 
@@ -13,16 +13,16 @@ namespace
 
 std::string BookChapterDataReaderBase::readName(const nlohmann::json& jsChapter) const
 {
-	return jsChapter[KEY_NAME];
+	return jsChapter.at(KEY_NAME);
 }
 
-std::vector<std::shared_ptr<IBookDataItem>> BookChapterDataReaderBase::readChilds(const nlohmann::json& jsChapter) const
+std::vector<std::shared_ptr<BookDataItem>> BookChapterDataReaderBase::readChilds(const nlohmann::json& jsChapter) const
 {
-	std::vector<std::shared_ptr<IBookDataItem>> childs;
-	for (const auto& jsItem : jsChapter[KEY_CHILDS])
+	std::vector<std::shared_ptr<BookDataItem>> childs;
+	for (const auto& jsItem : jsChapter.at(KEY_CHILDS))
 	{
 		auto readerItem = this->getReaderItem();
-		std::shared_ptr<IBookDataItem> item (readerItem->read(jsItem));
+		std::shared_ptr<BookDataItem> item (readerItem->read(jsItem));
 		childs.push_back(std::move(item));
 	}
 	return childs;

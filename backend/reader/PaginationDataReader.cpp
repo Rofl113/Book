@@ -12,18 +12,17 @@ PaginationDataReader::~PaginationDataReader()
 
 }
 
-IPaginationData* PaginationDataReader::read(const nlohmann::json& jsPagination) const
+std::shared_ptr<PaginationData> PaginationDataReader::read(const nlohmann::json& jsPagination) const
 {
-	IPaginationData* data = nullptr;
+	std::shared_ptr<PaginationData> data;
 	try
 	{
 		const bool enanbled = this->readEnabled(jsPagination);
-		data = new PaginationData(enanbled);
+		data.reset(new PaginationData(enanbled));
 	}
 	catch (...)
 	{
-		printf("Bad jsPagination: %s", jsPagination.dump().c_str());
-		assert(0);
+		throw;
 	}
 	return data;
 }

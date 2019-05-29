@@ -1,30 +1,32 @@
 #pragma once
-#include "IBookDataItem.h"
 #include <memory>
 
 
 
-class IPaginationData;
+class PaginationData;
+enum class BookDataType;
 
 
-class BookDataItem : public IBookDataItem
+class BookDataItem
 {
 	BookDataItem() = delete;
 public:
-	explicit BookDataItem(const std::string& name, const Type& type);
+	explicit BookDataItem(const std::string& name, const BookDataType& type);
 
 	// Имя узла - (страницы или главы)
-	virtual const std::string& getName() const override;
-	virtual const Type& getType() const override;
+	virtual const std::string& getName() const;
+	virtual const BookDataType& getType() const;
 	// Настройки нумерации страниц
-	void setPagination(const std::shared_ptr<IPaginationData>& pagination);
-	const IPaginationData* getPagination() const;
+	virtual void setPagination(const std::shared_ptr<PaginationData>& pagination);
+	virtual const PaginationData* getPagination() const;
+
+	virtual bool equal(const BookDataItem& other) const;
 
 private:
 	// Имя узла - (страницы или главы)
 	const std::string m_name;
 	// Тип узла - (страница или глава или книга)
-	const Type m_type;
+	const BookDataType m_type;
 	// Настройки нумерации страниц
-	std::shared_ptr<IPaginationData> m_pagination;
+	std::shared_ptr<PaginationData> m_pagination;
 };

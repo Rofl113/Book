@@ -10,3 +10,9 @@ add_subdirectory(data)
 
 # reader
 add_subdirectory(reader)
+
+# loader
+add_subdirectory(loader)
+
+# book
+add_subdirectory(book)

@@ -5,7 +5,7 @@
 #include "PaginationDataBookReader.h"
 #include "BookmarksDataReader.h"
 #include "data/BookData.h"
-#include "data/IBookmarksData.h"
+#include "data/BookmarksData.h"
 
 
 
@@ -24,9 +24,9 @@ BookDataReader::BookDataReader()
 	, m_readerBookmarks(new BookmarksDataReader())
 {
 	// Устанавливаем зависимости
-	m_readerItem->setReaderPage(m_readerPage.get());
-	m_readerItem->setReaderChapter(m_readerChapter.get());
-	m_readerChapter->setReaderItem(m_readerItem.get());
+	m_readerItem->setReaderPage(m_readerPage);
+	m_readerItem->setReaderChapter(m_readerChapter);
+	m_readerChapter->setReaderItem(m_readerItem);
 }
 
 BookDataReader::~BookDataReader()
@@ -37,30 +37,29 @@ BookDataReader::~BookDataReader()
 	m_readerChapter->setReaderItem(nullptr);
 }
 
-IBookData* BookDataReader::read(const nlohmann::json& jsBook) const
+std::shared_ptr<BookData> BookDataReader::read(const nlohmann::json& jsBook) const
 {
-	IBookData* data = nullptr;
+	std::shared_ptr<BookData> data;
 	try
 	{
 		auto name = this->readName(jsBook);
 		auto childs = this->readChilds(jsBook);
-		data = new BookData(std::move(name), std::move(childs));
+		data.reset(new BookData(std::move(name), std::move(childs)));
 		if (jsBook.count(KEY_PAGINATION))
 		{
 			auto pagination = m_readerPaginationBook->read(jsBook[KEY_PAGINATION]);
-			data->setPagination(std::move(pagination));
+			data->setPaginationBook(std::move(pagination));
 		}
 		if (jsBook.count(KEY_BOOKMARKS))
 		{
-			std::shared_ptr<IBookmarksData> bookmarks (m_readerBookmarks->read(jsBook[KEY_BOOKMARKS]));
+			std::shared_ptr<BookmarksData> bookmarks (m_readerBookmarks->read(jsBook[KEY_BOOKMARKS]));
 			data->setBookmarks(std::move(bookmarks));
 		}
 	}
 	catch (...)
 	{
-		printf("Bad jsBook: %s", jsBook.dump().c_str());
-		assert(0);
-		data = nullptr;
+		data.reset();
+		throw;
 	}
 	return data;
 }

@@ -10,5 +10,5 @@ public:
 	BookPageDataReader();
 	virtual ~BookPageDataReader() override;
 
-	virtual IBookDataPage* read(const nlohmann::json& jsPage) const override;
+	virtual std::shared_ptr<BookDataPage> read(const nlohmann::json& jsPage) const override;
 };

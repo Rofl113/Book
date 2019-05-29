@@ -1,16 +1,24 @@
 #pragma once
+#include <string>
+#include <map>
 #include "BookDataItem.h"
-#include "IBookDataPage.h"
 
 
+class ManagerActionsData;
 
-class BookDataPage : public BookDataItem, public IBookDataPage
+
+class BookDataPage : public BookDataItem
 {
 	BookDataPage() = delete;
 public:
-	explicit BookDataPage(const std::string& name);
+	explicit BookDataPage(const std::string& name
+	, const std::map<std::string, std::shared_ptr<ManagerActionsData>>& managers = {}
+	, const std::string& managerActionsName = {});
+
+	const std::map<std::string, std::shared_ptr<ManagerActionsData>>& getManagers() const;
+	const std::string& getManagerActionsName() const;
 
 private:
-	virtual const IBookDataItem::Type& getType() const override;
-	virtual const std::string& getName() const override;
+	const std::map<std::string, std::shared_ptr<ManagerActionsData>> m_managers;
+	const std::string m_managerActionsName;
 };

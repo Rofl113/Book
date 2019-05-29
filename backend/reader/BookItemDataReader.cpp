@@ -1,8 +1,8 @@
 #include "BookItemDataReader.h"
 #include "IBookChapterDataReader.h"
 #include "IBookPageDataReader.h"
-#include "data/IBookDataChapter.h"
-#include "data/IBookDataPage.h"
+#include "data/BookDataChapter.h"
+#include "data/BookDataPage.h"
 
 
 
@@ -23,9 +23,9 @@ BookItemDataReader::~BookItemDataReader()
 
 }
 
-IBookDataItem* BookItemDataReader::read(const nlohmann::json& jsItem) const
+std::shared_ptr<BookDataItem> BookItemDataReader::read(const nlohmann::json& jsItem) const
 {
-	IBookDataItem* data = nullptr;
+	std::shared_ptr<BookDataItem> data;
 	try
 	{
 		// Chapter
@@ -53,12 +53,12 @@ IBookDataItem* BookItemDataReader::read(const nlohmann::json& jsItem) const
 	return data;
 }
 
-void BookItemDataReader::setReaderPage(const IBookPageDataReader* readerPage)
+void BookItemDataReader::setReaderPage(const std::shared_ptr<IBookPageDataReader>& readerPage)
 {
 	m_readerPage = readerPage;
 }
 
-void BookItemDataReader::setReaderChapter(const IBookChapterDataReader* readerChapter)
+void BookItemDataReader::setReaderChapter(const std::shared_ptr<IBookChapterDataReader>& readerChapter)
 {
 	m_readerChapter = readerChapter;
 }

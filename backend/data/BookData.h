@@ -2,25 +2,34 @@
 #include <string>
 #include <map>
 #include "BookDataChapter.h"
-#include "IBookData.h"
 
 
 
-class IBookmarksData;
+class PaginationDataBook;
+class BookmarksData;
 
 
-class BookData : public IBookData, public BookDataChapter
+class BookData : public BookDataChapter
 {
+	using ClassBase = BookDataChapter;
 	BookData() = delete;
 public:
-	explicit BookData(const std::string& name, std::vector<std::shared_ptr<IBookDataItem> >&& childs);
+	explicit BookData(const std::string& name, std::vector<std::shared_ptr<BookDataItem> >&& childs);
 
-	virtual void setPagination(PaginationDataBook* pagination) override;
-	virtual const PaginationDataBook* getPagination() const override;
+	virtual void setPaginationBook(const std::shared_ptr<PaginationDataBook>& pagination);
+	virtual const PaginationDataBook* getPaginationBook() const;
 
-	virtual void setBookmarks(const std::shared_ptr<IBookmarksData>& bookmarks) override;
-	virtual const IBookmarksData* getBookmarks() const override;
+	virtual void setBookmarks(std::shared_ptr<BookmarksData> bookmarks);
+	virtual const BookmarksData* getBookmarks() const;
+
+	virtual bool equal(const BookDataItem& other) const override;
 
 private:
-	std::shared_ptr<IBookmarksData> m_bookmarks;
+	// Используем setPaginationBook
+	virtual void setPagination(const std::shared_ptr<PaginationData>& pagination) override;
+	virtual const std::vector<std::shared_ptr<BookDataItem>>& getChilds() const override;
+	virtual const BookDataType& getType() const override;
+	virtual const std::string& getName() const override;
+
+	std::shared_ptr<BookmarksData> m_bookmarks;
 };

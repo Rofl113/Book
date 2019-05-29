@@ -19,14 +19,14 @@ public:
 	BookDataReader();
 	~BookDataReader();
 
-	virtual IBookData* read(const nlohmann::json& jsBook) const override;
+	virtual std::shared_ptr<BookData> read(const nlohmann::json& jsBook) const override;
 
 private:
 	virtual const IBookItemDataReader* getReaderItem() const override;
 	// Вспомогательные элменты
-	std::unique_ptr<IBookItemDataReader> m_readerItem;
-	std::unique_ptr<IBookPageDataReader> m_readerPage;
-	std::unique_ptr<IBookChapterDataReader> m_readerChapter;
-	std::unique_ptr<IPaginationDataBookReader> m_readerPaginationBook;
-	std::unique_ptr<IBookmarksDataReader> m_readerBookmarks;
+	std::shared_ptr<IBookItemDataReader> m_readerItem;
+	std::shared_ptr<IBookPageDataReader> m_readerPage;
+	std::shared_ptr<IBookChapterDataReader> m_readerChapter;
+	std::shared_ptr<IPaginationDataBookReader> m_readerPaginationBook;
+	std::shared_ptr<IBookmarksDataReader> m_readerBookmarks;
 };

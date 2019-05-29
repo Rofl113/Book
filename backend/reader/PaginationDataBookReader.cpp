@@ -20,9 +20,9 @@ PaginationDataBookReader::~PaginationDataBookReader()
 
 }
 
-PaginationDataBook* PaginationDataBookReader::read(const nlohmann::json& jsPagination) const
+std::shared_ptr<PaginationDataBook> PaginationDataBookReader::read(const nlohmann::json& jsPagination) const
 {
-	PaginationDataBook* data = nullptr;
+	std::shared_ptr<PaginationDataBook> data;
 	try
 	{
 		const bool enanbled = this->readEnabled(jsPagination);
@@ -36,12 +36,11 @@ PaginationDataBook* PaginationDataBookReader::read(const nlohmann::json& jsPagin
 				groups[group] = std::move(items);
 			}
 		}
-		data = new PaginationDataBook(enanbled, std::move(groups));
+		data.reset(new PaginationDataBook(enanbled, std::move(groups)));
 	}
 	catch (...)
 	{
-		printf("Bad jsPagination: %s", jsPagination.dump().c_str());
-		assert(0);
+		throw;
 	}
 	return data;
 }

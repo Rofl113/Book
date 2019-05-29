@@ -3,7 +3,7 @@
 
 
 
-class IBookDataPage;
+class BookDataPage;
 
 
 class IBookPageDataReader
@@ -11,5 +11,5 @@ class IBookPageDataReader
 public:
 	virtual ~IBookPageDataReader() = default;
 
-	virtual IBookDataPage* read(const nlohmann::json& jsPage) const = 0;
+	virtual std::shared_ptr<BookDataPage> read(const nlohmann::json& jsPage) const = 0;
 };

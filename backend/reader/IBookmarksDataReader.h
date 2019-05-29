@@ -3,7 +3,7 @@
 
 
 
-class IBookmarksData;
+class BookmarksData;
 
 
 class IBookmarksDataReader
@@ -11,5 +11,5 @@ class IBookmarksDataReader
 public:
 	virtual ~IBookmarksDataReader() = default;
 
-	virtual IBookmarksData* read(const nlohmann::json& jsBookmarks) const = 0;
+	virtual std::shared_ptr<BookmarksData> read(const nlohmann::json& jsBookmarks) const = 0;
 };

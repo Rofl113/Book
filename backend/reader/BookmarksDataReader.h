@@ -9,5 +9,5 @@ public:
 	BookmarksDataReader();
 	virtual ~BookmarksDataReader() override;
 
-	virtual IBookmarksData* read(const nlohmann::json& jsBookmarks) const override;
+	virtual std::shared_ptr<BookmarksData> read(const nlohmann::json& jsBookmarks) const override;
 };

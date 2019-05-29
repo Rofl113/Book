@@ -11,5 +11,5 @@ class IPaginationDataBookReader
 public:
 	virtual ~IPaginationDataBookReader() = default;
 
-	virtual PaginationDataBook* read(const nlohmann::json& jsPagination) const = 0;
+	virtual std::shared_ptr<PaginationDataBook> read(const nlohmann::json& jsPagination) const = 0;
 };

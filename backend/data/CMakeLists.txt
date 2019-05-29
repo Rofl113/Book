@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.2.0)
 
 add_definitions(-Wextra -Wno-unused-parameter)
 
@@ -9,6 +9,9 @@ set(SOURCES
 	./BookDataPage.cpp
 	./PaginationData.cpp
 	./PaginationDataBook.cpp
+	./BookmarkData.cpp
+	./BookmarksData.cpp
+	./ManagerActionsData.cpp
 )
 
 add_library(BookData ${SOURCES})

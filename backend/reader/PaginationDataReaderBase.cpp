@@ -5,9 +5,9 @@
 namespace
 {
 	static constexpr const auto KEY_ENABLED = "enanbled";
-}
+} // end namespace
 
 bool PaginationDataReaderBase::readEnabled(const nlohmann::json& jsPagination) const
 {
-	return jsPagination[KEY_ENABLED];
+	return jsPagination.at(KEY_ENABLED);
 }

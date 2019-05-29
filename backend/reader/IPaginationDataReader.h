@@ -3,7 +3,7 @@
 
 
 
-class IPaginationData;
+class PaginationData;
 
 
 class IPaginationDataReader
@@ -11,5 +11,5 @@ class IPaginationDataReader
 public:
 	virtual ~IPaginationDataReader() = default;
 
-	virtual IPaginationData* read(const nlohmann::json& jsPagination) const = 0;
+	virtual std::shared_ptr<PaginationData> read(const nlohmann::json& jsPagination) const = 0;
 };
