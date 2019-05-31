@@ -17,7 +17,7 @@ class BookDataReader : public IBookDataReader, public BookChapterDataReaderBase
 {
 public:
 	BookDataReader();
-	~BookDataReader();
+	virtual ~BookDataReader() override;
 
 	virtual std::shared_ptr<BookData> read(const nlohmann::json& jsBook) const override;
 

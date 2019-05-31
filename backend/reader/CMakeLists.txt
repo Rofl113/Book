@@ -9,6 +9,7 @@ include_directories(
 set(SOURCES
 	./BookChapterDataReader.cpp
 	./BookDataReader.cpp
+	./IBookDataReader.h
 	./BookItemDataReader.cpp
 	./BookPageDataReader.cpp
 	./BookChapterDataReaderBase.cpp
@@ -17,6 +18,7 @@ set(SOURCES
 	./PaginationDataBookReader.cpp
 	./BookmarksDataReader.cpp
 	./ManagerActionsDataReader.cpp
+	./IManagerActionsDataReader.h
 )
 
 add_library(BookDataReader ${SOURCES})

@@ -4,6 +4,11 @@
 
 
 
+BookData::~BookData()
+{
+
+}
+
 BookData::BookData(const std::string& name, std::vector<std::shared_ptr<BookDataItem> >&& childs)
 	: BookDataChapter(name, std::move(childs))
 {

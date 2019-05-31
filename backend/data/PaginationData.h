@@ -8,7 +8,7 @@ class PaginationData
 {
 	PaginationData() = delete;
 public:
-	virtual ~PaginationData() = default;
+	virtual ~PaginationData();
 	explicit PaginationData(const bool enanbled);
 
 	virtual bool isEnabled() const;
@@ -16,5 +16,5 @@ public:
 	virtual bool equal(const PaginationData& other) const;
 
 private:
-	const bool m_enanbled;
+	const bool m_enanbled = false;
 };

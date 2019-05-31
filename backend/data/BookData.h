@@ -14,6 +14,7 @@ class BookData : public BookDataChapter
 	using ClassBase = BookDataChapter;
 	BookData() = delete;
 public:
+	virtual ~BookData() override;
 	explicit BookData(const std::string& name, std::vector<std::shared_ptr<BookDataItem> >&& childs);
 
 	virtual void setPaginationBook(const std::shared_ptr<PaginationDataBook>& pagination);

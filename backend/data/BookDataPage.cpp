@@ -15,6 +15,11 @@ BookDataPage::BookDataPage(const std::string& name
 
 }
 
+BookDataPage::~BookDataPage()
+{
+
+}
+
 const std::map<std::string, std::shared_ptr<ManagerActionsData>>& BookDataPage::getManagers() const
 {
 	return m_managers;

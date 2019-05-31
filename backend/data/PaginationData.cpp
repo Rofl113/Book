@@ -2,6 +2,11 @@
 
 
 
+PaginationData::~PaginationData()
+{
+
+}
+
 PaginationData::PaginationData(const bool enanbled)
 	: m_enanbled(enanbled)
 {

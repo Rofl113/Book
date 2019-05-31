@@ -3,6 +3,11 @@
 
 
 
+PaginationBookBase::~PaginationBookBase()
+{
+
+}
+
 void PaginationBookBase::setGroups(std::map<std::string, std::vector<std::string> >&& dataGroups)
 {
 	m_dataGroups = std::move(dataGroups);

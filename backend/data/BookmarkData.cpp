@@ -3,7 +3,9 @@
 
 
 
-BookmarkData::BookmarkData(const std::string&& name, const std::string&& itemBookName, const std::vector<BookmarkData>&& childs)
+BookmarkData::BookmarkData(const std::string&& name
+						   , const std::string&& itemBookName
+						   , const std::vector<BookmarkData>&& childs)
 	: m_name(std::move(name))
 	, m_itemBookName(std::move(itemBookName))
 	, m_childs(std::move(childs))

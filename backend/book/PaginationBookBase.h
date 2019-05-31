@@ -8,6 +8,7 @@ class PaginationBookBase : public PaginationBase, public IPaginationBook
 {
 	using ClassBase = PaginationBase;
 public:
+	virtual ~PaginationBookBase() override;
 	// IPaginationBook
 	virtual void setGroups(std::map<std::string, std::vector<std::string>>&& dataGroups) override;
 	virtual void setPagesCount(std::map<std::string, size_t>&& pagesCount) override;
