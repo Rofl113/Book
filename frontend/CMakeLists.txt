@@ -4,7 +4,7 @@ include_directories(
 )
 
 if(BUILD_CONFIG STREQUAL "MAIN")
-	add_subdirectory(main)
+	#add_subdirectory(main)
 
 elseif(BUILD_CONFIG STREQUAL "TEST")
 	add_subdirectory(test)
