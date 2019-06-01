@@ -68,7 +68,7 @@ void PaginationBookBase::updateData()
 		size_t count = 0;
 		for (const auto& page : pages)
 		{
-			if (not m_pagesCount.count(page))
+			if (false == m_pagesCount.count(page))
 			{
 				return;
 			}

@@ -10,7 +10,7 @@ class BookmarksData
 {
 	BookmarksData() = delete;
 public:
-	virtual ~BookmarksData() = default;
+	virtual ~BookmarksData();
 	explicit BookmarksData(const bool enabled, std::vector<BookmarkData>&& marks);
 
 	virtual bool isEnabled() const;

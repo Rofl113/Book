@@ -3,6 +3,11 @@
 
 
 
+BookDataChapter::~BookDataChapter()
+{
+
+}
+
 BookDataChapter::BookDataChapter(const std::string& name, std::vector<std::shared_ptr<BookDataItem> >&& childs)
 	: BookDataItem(name, BookDataType::CHAPTER)
 	, m_childs(std::move(childs))
@@ -19,7 +24,7 @@ bool BookDataChapter::equal(const BookDataItem& other) const
 {
 	if (const auto otherChapter = dynamic_cast<const BookDataChapter*>(&other))
 	{
-		if (not ClassBase::equal(*otherChapter))
+		if (false == ClassBase::equal(*otherChapter))
 		{
 			return false;
 		}
@@ -31,7 +36,7 @@ bool BookDataChapter::equal(const BookDataItem& other) const
 		const auto& childsOther = otherChapter->getChilds();
 		for (size_t i = 0; i < childsThis.size(); ++i)
 		{
-			if (not childsThis[i]->equal(*childsOther[i].get()))
+			if (false == childsThis[i]->equal(*childsOther[i].get()))
 			{
 				return false;
 			}

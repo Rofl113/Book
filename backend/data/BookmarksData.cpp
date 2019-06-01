@@ -4,6 +4,11 @@
 
 
 
+BookmarksData::~BookmarksData()
+{
+
+}
+
 BookmarksData::BookmarksData(const bool enabled, std::vector<BookmarkData>&& marks)
 	: m_enabled(enabled)
 	, m_marks(std::move(marks))

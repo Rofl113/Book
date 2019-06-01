@@ -10,6 +10,7 @@ class BookDataChapter : public BookDataItem
 	using ClassBase = BookDataItem;
 	BookDataChapter() = delete;
 public:
+	virtual ~BookDataChapter() override;
 	explicit BookDataChapter(const std::string& name, std::vector<std::shared_ptr<BookDataItem>>&& childs);
 
 	virtual const std::vector<std::shared_ptr<BookDataItem>>& getChilds() const;

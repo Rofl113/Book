@@ -44,7 +44,7 @@ void ManagerActionsChapter::setPagination(const bool enable)
 {
 	if (enable)
 	{
-		if (not m_pagination)
+		if (nullptr == m_pagination)
 		{
 			m_pagination.reset(new PaginationBase());
 			this->updatePagination();
@@ -113,7 +113,7 @@ bool ManagerActionsChapter::check(const IManagerActions::TypeAction action) cons
 
 bool ManagerActionsChapter::run(const IManagerActions::TypeAction action)
 {
-	if (not this->check(action))
+	if (false == this->check(action))
 	{
 		return false;
 	}
@@ -196,7 +196,7 @@ bool ManagerActionsChapter::run(const IManagerActions::TypeAction action)
 
 bool ManagerActionsChapter::runChoiceItem(const std::string& itemName)
 {
-	if (not this->checkChoiceItem(itemName))
+	if (false == this->checkChoiceItem(itemName))
 	{
 		return false;
 	}

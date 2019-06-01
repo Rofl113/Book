@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.2.0)
 
-add_definitions(-Wextra -Wno-unused-parameter)
-
 set(SOURCES
 	./BookData.cpp
+	./BookDataType.h
 	./BookDataChapter.cpp
 	./BookDataItem.cpp
 	./BookDataPage.cpp

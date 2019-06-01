@@ -39,7 +39,7 @@ bool BookData::equal(const BookDataItem& other) const
 {
 	if (const auto otherBook = dynamic_cast<const BookData*>(&other))
 	{
-		if (not ClassBase::equal(*otherBook))
+		if (false == ClassBase::equal(*otherBook))
 		{
 			return false;
 		}

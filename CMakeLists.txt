@@ -1,7 +1,28 @@
 cmake_minimum_required(VERSION 3.2.0)
 
-add_definitions(-Werror)
-add_definitions(-Wextra -Wno-unused-parameter)
+
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+	# using Clang
+	message("[--] Clang detected, adding compile flags")
+	add_definitions(-Werror)
+	add_definitions(-Wextra -Wno-unused-parameter)
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+	# using GCC
+	message("[--] GCC detected, adding compile flags")
+	add_definitions(-Werror)
+	add_definitions(-Wextra -Wno-unused-parameter)
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
+	# using Intel C++
+	message("[--] Intel detected, adding compile flags")
+	add_definitions(-Werror)
+	add_definitions(-Wextra -Wno-unused-parameter)
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	# using Visual Studio C++
+	message("[--] MSVC detected, adding compile flags")
+else()
+	message(FATAL_ERROR "[EE] compiler not detected: " "${CMAKE_CXX_COMPILER_ID}")
+endif()
+
 
 # Конфигурация сборки:
 set(BUILD_CONFIG "MAIN" CACHE STRING "Select build configuration")

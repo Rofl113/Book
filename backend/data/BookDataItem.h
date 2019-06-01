@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include <memory>
 
 
@@ -11,6 +12,7 @@ class BookDataItem
 {
 	BookDataItem() = delete;
 public:
+	virtual ~BookDataItem();
 	explicit BookDataItem(const std::string& name, const BookDataType& type);
 
 	// Имя узла - (страницы или главы)

@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.2.0)
 
-add_definitions(-Wextra -Wno-unused-parameter)
-
 set(SOURCES
 	./BookChapterLoaderBase.cpp
 	./BookChapterLoader.cpp

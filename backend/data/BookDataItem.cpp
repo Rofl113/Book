@@ -3,6 +3,11 @@
 
 
 
+BookDataItem::~BookDataItem()
+{
+
+}
+
 BookDataItem::BookDataItem(const std::string& name, const BookDataType& type)
 	: m_name(name)
 	, m_type(type)
@@ -44,7 +49,7 @@ bool BookDataItem::equal(const BookDataItem& other) const
 	const auto paginationOther = other.getPagination();
 	if (paginationThis && paginationOther)
 	{
-		if (not paginationThis->equal(*paginationOther))
+		if (false == paginationThis->equal(*paginationOther))
 		{
 			return true;
 		}

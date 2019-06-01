@@ -10,6 +10,7 @@ class PaginationDataBook : public PaginationData
 	using ClassBase = PaginationData;
 	PaginationDataBook() = delete;
 public:
+	virtual ~PaginationDataBook() override;
 	explicit PaginationDataBook(const bool enanbled, std::map<std::string, std::vector<std::string>>&& groups);
 	virtual const std::map<std::string, std::vector<std::string>>& getGroupsItems() const;
 	virtual bool isEnabled() const override;

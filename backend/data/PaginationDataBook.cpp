@@ -4,6 +4,11 @@
 
 
 
+PaginationDataBook::~PaginationDataBook()
+{
+
+}
+
 PaginationDataBook::PaginationDataBook(const bool enanbled, std::map<std::string, std::vector<std::string>>&& groups)
 	: PaginationData(enanbled)
 	, m_groupsItems(std::move(groups))
@@ -25,7 +30,7 @@ bool PaginationDataBook::equal(const PaginationData& other) const
 {
 	if (const auto otherData = dynamic_cast<const PaginationDataBook*>(&other))
 	{
-		if (not ClassBase::equal(*otherData))
+		if (false == ClassBase::equal(*otherData))
 		{
 			return false;
 		}
