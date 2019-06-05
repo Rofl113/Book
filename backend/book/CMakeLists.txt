@@ -30,7 +30,3 @@ set(SOURCES
 
 add_library(Book ${SOURCES})
 target_link_libraries(Book BookData)
-
-foreach(file ${SOURCES})
-  message(STATUS "file='${file}'")
-endforeach()
