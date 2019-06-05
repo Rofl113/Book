@@ -15,9 +15,9 @@ class IManagerBookItemFactory;
 class BookPage : public BookItem
 {
 	using ClassBase = BookItem;
-	BookPage() = delete;
 public:
-	BookPage(const std::shared_ptr<IManagerBookItemFactory>& managerFactory);
+	virtual ~BookPage() override = default;
+	BookPage() = default;
 
 protected:
 	// IBookItem
@@ -26,10 +26,11 @@ protected:
 	// BookItem
 	virtual void updateFromData() override;
 
+	virtual std::unique_ptr<IManagerBookItem> createManager(const std::shared_ptr<ManagerActionsData>& data);
+
 private:
 	std::string getManagerActionsName() const;
 	IManagerBookItem* getManagerActionsPage() const;
 
-	const std::shared_ptr<IManagerBookItemFactory> m_managerFactory;
 	std::map<std::string, std::unique_ptr<IManagerBookItem>> m_managers;
 };

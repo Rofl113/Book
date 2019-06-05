@@ -8,13 +8,6 @@
 
 
 
-BookPage::BookPage(const std::shared_ptr<IManagerBookItemFactory>& managerFactory)
-	: ClassBase()
-	, m_managerFactory(managerFactory)
-{
-
-}
-
 IManagerActions* BookPage::getManagerActions()
 {
 	return this->getManagerActionsPage();
@@ -38,14 +31,13 @@ void BookPage::updateFromData()
 		return;
 	}
 	// Reload managers
-	if (m_managerFactory)
 	{
 		for (const auto& itManager : data->getManagers())
 		{
 			const auto& name = itManager.first;
 			if (const auto data = itManager.second)
 			{
-				m_managers[name] = m_managerFactory->create(data);
+				m_managers[name] = this->createManager(data);
 			}
 		}
 	}
@@ -56,6 +48,12 @@ void BookPage::updateFromData()
 		const bool isEnabled = (dataPagination) ? dataPagination->isEnabled() : false;
 		manager->setPagination(isEnabled);
 	}
+}
+
+std::unique_ptr<IManagerBookItem> BookPage::createManager(const std::shared_ptr<ManagerActionsData>& data)
+{
+	// Реализация в наследниках
+	return {};
 }
 
 std::string BookPage::getManagerActionsName() const
