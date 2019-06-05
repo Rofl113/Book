@@ -4,11 +4,8 @@
 #include <memory>
 #include "BookItem.h"
 #include "data/BookDataPage.h"
+#include "IManagerBookItem.h"
 
-
-
-class IManagerBookItem;
-class IManagerBookItemFactory;
 
 
 

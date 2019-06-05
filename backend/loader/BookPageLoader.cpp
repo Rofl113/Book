@@ -19,16 +19,11 @@ std::unique_ptr<IBookItem> BookPageLoader::load(const std::shared_ptr<BookDataIt
 	std::unique_ptr<IBookItem> item;
 	if (data)
 	{
-		item.reset(new BookPage(m_managerFactory));
+		item.reset(new BookPage());
 		if (auto page = dynamic_cast<BookPage*>(item.get()))
 		{
 			page->setData(data);
 		}
 	}
 	return item;
-}
-
-void BookPageLoader::setManagerBookItemFactory(const std::shared_ptr<IManagerBookItemFactory>& managerFactory)
-{
-	m_managerFactory = managerFactory;
 }

@@ -1,7 +1,5 @@
 #include "BookPage.h"
 #include "PaginationBase.h"
-#include "IManagerBookItem.h"
-#include "IManagerBookItemFactory.h"
 #include "data/PaginationData.h"
 #include "data/BookDataPage.h"
 
